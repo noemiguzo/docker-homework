@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  api:
+    image: docker.jala.pro/docker-training/backend:calebespinoza
+    container_name: backend
+    networks:
+      - mynetwork
+    volumes:
+      - api-data:/app
+  fe:
+    image: docker.jala.pro/docker-training/frontend:calebespinoza
+    container_name: frontend
+    ports:
+      - "8080:80"
+    networks:
+      - mynetwork
+    volumes:
+      - fe-data:/usr/share/nginx/html
+networks:
+  mynetwork:
+    driver: bridge
+volumes:
+  api-data:
+  fe-data:
